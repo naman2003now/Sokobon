@@ -1,19 +1,13 @@
-//ff595e RED
-//ffca3a YELLOW
-//8ac926 GREEN
-//1982c4 BLUE
+import { Levels } from "./levels.js"
 
 var gridSize = 6
 
 var canvas = document.getElementById("root")
-var element ='<div class="cell animated"></div>'
-for(let i = 0; i < gridSize*gridSize - 1; i++){
-    element += '<div class="cell"></div>'
-}
+
 
 document.body.style.setProperty('--grid-size', gridSize);
 
-document.getElementById("container").innerHTML = element
+document.getElementById("container").innerHTML = Levels.map_to_html(Levels.levels[0].map)
 
 setInterval(() => {
     document.body.style.height = "" + window.innerHeight+ "px"

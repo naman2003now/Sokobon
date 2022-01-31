@@ -4,7 +4,17 @@ body{
     justify-content: center;
     padding: 0px;
     margin: 0px;
+
+    --background-color: #00509d;
+    --wall-color: #1982c4;
+    --player-color: #ffca3a;
+    --box-red: #ff595e;
+    --box-green: #8ac926;
+    --goal-color: #003f88;
+
     --grid-size: 5;
+    
+    background-color: var(--background-color);
 }
 
 #root{
@@ -16,32 +26,52 @@ body{
 #container{
     width: 90%;
     height: 90%;
-    display: flex;
-    flex-wrap: wrap;
     margin: 1%;
     padding: 1%;
     border-radius: 2%;
-    background-color: #d3d3d3;  
+    background-color: var(--background-color);  
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: calc(100% / var(--grid-size));
+    padding: 0px;
+    margin: 0px;
 }
 
 .cell{
-    background-color: #dedede;
-    border-radius: calc(var(--grid-size) * 1.6%);
+    background-color: var(--background-color);
+    border-radius: 5% /*calc(var(--grid-size) * 1.6%)*/ ;
     width: calc(90% / var(--grid-size));
-    height: calc(90% / var(--grid-size));
+    height: 90%;
     margin: calc(5% / var(--grid-size));
     transition: 0.2s;
 }
 
-.cell:hover{
-    background-color: #1982c4;
+.goal{
+    background-color: var(--goal-color);
+    width: calc(70% / var(--grid-size));
+    height: 70%;
+    margin: calc(15% / var(--grid-size));
+    border-radius: 50%;
 }
 
-@keyframes move{
-    from{ transform: translateX(0%);}
-    to{ transform: translateX(111.1111111%);}
+.player{
+    background-color: var(--player-color);
 }
 
-.animated{
-    background-color: #ffca3a;
+.box-red{
+    background-color: var(--box-red);
 }
+
+.box-green{
+    background-color: var(--box-green);
+}
+
+.wall{
+    background-color: var(--wall-color);
+}
+
+
