@@ -97,3 +97,24 @@ body{
     to {transform: translateY(calc(-100% - (40% / var(--grid-size))));}
 }
 
+@keyframes moveRightDeny {
+    from {transform: translateX(0%);}
+    to {transform: translateX(calc((40% / var(--grid-size))));}
+}
+
+@keyframes moveLeftDeny {
+    from {transform: translateX(0%);}
+    to {transform: translateX(calc((-40% / var(--grid-size))));}
+}
+
+@keyframes moveDownDeny {
+    from {transform: translateY(0%);}
+    to {transform: translateY(calc((40% / var(--grid-size))));}
+}
+
+@keyframes moveUpDeny {
+    from {transform: translateY(0%);}
+    to {transform: translateY(calc((-40% / var(--grid-size))));}
+}
+
+

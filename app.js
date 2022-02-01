@@ -24,12 +24,20 @@ window.onresize = () => {
 function move(animation, x, y){
     let player = document.getElementsByClassName("player")[0]
     let coord = player.id.split(",")
-    player.style.animation = animation + " 0.1s alternate 2"
-    setTimeout(() => {
-        player.style.animation = ""
-        player.classList.remove("player")
-        document.getElementById("" + (parseInt(coord[0]) + x)+ "," + (parseInt(coord[1]) + y)).classList.add("player")
-    }, 100)
+    if(document.getElementById("" + (parseInt(coord[0]) + x)+ "," + (parseInt(coord[1]) + y)).classList.length > 1){
+        player.style.animation = animation + "Deny 0.05s alternate 2"
+        setTimeout(() => {
+            player.style.animation = ""
+        }, 100)
+    }
+    else{
+        player.style.animation = animation + " 0.1s alternate 2"
+        setTimeout(() => {
+            player.style.animation = ""
+            player.classList.remove("player")
+            document.getElementById("" + (parseInt(coord[0]) + x)+ "," + (parseInt(coord[1]) + y)).classList.add("player")
+        }, 100)
+    }
 }
 
 window.onkeydown = (event) => {
