@@ -1,7 +1,7 @@
 import { Levels } from "./levels.js"
 
 var canvas = document.getElementById("root")
-var currentLevel = 7;
+var currentLevel = 0;
 var availableForMovement = true;
 newLevel()
 
