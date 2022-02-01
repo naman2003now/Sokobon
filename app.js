@@ -42,7 +42,7 @@ function move(animation, x, y){
     }
     else if(nextCell.classList.contains("box-red") || nextCell.classList.contains("box-green")){
         let nextNextCell = document.getElementById("" + (parseInt(coord[0]) + x + x)+ "," + (parseInt(coord[1]) + y + y))
-        if(nextNextCell.classList.contains("wall")){
+        if(nextNextCell.classList.contains("wall") || nextNextCell.classList.contains("box-red") || nextNextCell.classList.contains("box-green")){
             player.style.animation = animation + "Deny 0.05s alternate 2"
             setTimeout(() => {
                 player.style.animation = ""
