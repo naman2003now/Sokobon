@@ -5,16 +5,29 @@ export const Levels = {
                 "######",
                 "#.P..#",
                 "###B.#",
-                "#..#.#",
+                "#....#",
                 "#G...#",
                 "######"
             ],
             gridSize: 6
+        },
+
+        {
+            map: [
+                "#######",
+                "#.P..##",
+                "###B.##",
+                "#....##",
+                "#G...##",
+                "#######",
+                "#######"
+            ],
+            gridSize: 7
         }
     ],
 
     map_to_html: (level) => {
-        let output = ""
+        let output = '<div class="controls">R to reload and WASD to move</div>'
         let lineNumber = 0
         level.forEach((line) => {
             output += '<div class="row">'

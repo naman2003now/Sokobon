@@ -35,10 +35,20 @@ body{
 .row{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: calc(100% / var(--grid-size));
+    width: 90%;
+    height: calc(90% / var(--grid-size));
     padding: 0px;
     margin: 0px;
+}
+
+.controls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
+    height: 10%;
+    width: 90%;
+    color: var(--goal-color);
 }
 
 .cell{
@@ -60,16 +70,28 @@ body{
 
 .player{
     background-color: var(--player-color);
+    width: calc(90% / var(--grid-size));
+    height: 90%;
+    margin: calc(5% / var(--grid-size));
+    border-radius: 5%;
     z-index: 1;
 }
 
 .box-red{
     background-color: var(--box-red);
+    width: calc(90% / var(--grid-size));
+    height: 90%;
+    margin: calc(5% / var(--grid-size));
+    border-radius: 5%;
     z-index: 1;
 }
 
 .box-green{
     background-color: var(--box-green);
+    width: calc(90% / var(--grid-size));
+    height: 90%;
+    margin: calc(5% / var(--grid-size));
+    border-radius: 5%;
     z-index: 1;
 }
 
