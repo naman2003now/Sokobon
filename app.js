@@ -1,7 +1,8 @@
 import { Levels } from "./levels.js"
 
 var canvas = document.getElementById("root")
-var currentLevel = 0;
+var currentLevel = 7;
+var availableForMovement = true;
 newLevel()
 
 document.body.style.height = "" + window.innerHeight+ "px"
@@ -28,6 +29,8 @@ function reload(){
 }
 
 function move(animation, x, y){
+    availableForMovement = false;
+    setTimeout(() => availableForMovement = true, 120)
     let player = document.getElementsByClassName("player")[0]
     let coord = player.id.split(",")
     let nextCell = document.getElementById("" + (parseInt(coord[0]) + x)+ "," + (parseInt(coord[1]) + y))
@@ -55,12 +58,13 @@ function move(animation, x, y){
             setTimeout(() => {
                 nextCell.style.animation = ""
                 nextCell.classList.remove("box-red")
+                nextCell.classList.remove("box-green")
                 nextNextCell.classList.add("box-red")
 
                 let levelOver = true
                 let allGoals = document.getElementsByClassName("goal")
                 for(let i  = 0; i < allGoals.length; i++){
-                    if(allGoals[i].classList.contains("box-red")){
+                    if(allGoals[i].classList.contains("box-red") || allGoals[i].classList.contains("box-green")){
                         allGoals[i].classList.replace("box-red", "box-green")
                     }else{
                         levelOver = false
@@ -83,20 +87,27 @@ function move(animation, x, y){
 }
 
 window.onkeydown = (event) => {
-    switch(event.key){
-        case "d":
-            move("moveRight", 1, 0)
-            break
-        case "a":
-            move("moveLeft", -1, 0)
-            break
-        case "w":
-            move("moveUp", 0, -1)
-            break
-        case "s":
-            move("moveDown", 0, 1)
-            break
-        case "r":
-            reload()
+    if(availableForMovement){
+        switch(event.key){
+            case "d":
+            case "D":
+                move("moveRight", 1, 0)
+                break
+            case "a":
+            case "A":
+                move("moveLeft", -1, 0)
+                break
+            case "w":
+            case "W":
+                move("moveUp", 0, -1)
+                break
+            case "s":
+            case "S":
+                move("moveDown", 0, 1)
+                break
+            case "r":
+            case "R":
+                reload()
+        }
     }
 }
