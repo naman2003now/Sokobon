@@ -9,7 +9,7 @@ if (
 		navigator.userAgent
 	)
 ) {
-	controls = "Swipe to move tap here to reload"
+	controls = "Swipe to move & tap here to reload"
 }
 newLevel()
 
@@ -155,6 +155,7 @@ var touchStartY = 0
 
 canvas.addEventListener("touchstart", function (event) {
 	event.preventDefault()
+	document.getElementsByClassName("controls")[0].ontouchstart = reload
 	touchStartX = event.targetTouches[0].clientX
 	touchStartY = event.targetTouches[0].clientY
 })
@@ -165,15 +166,15 @@ canvas.addEventListener("touchend", function (event) {
 		let touchDeltaX = touchStartX - event.changedTouches[0].clientX
 		let touchDeltaY = touchStartY - event.changedTouches[0].clientY
 		if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
-			if (touchDeltaX > 0) {
+			if (touchDeltaX > 10) {
 				move("moveLeft", -1, 0)
-			} else {
+			} else if (touchDeltaX < -10) {
 				move("moveRight", 1, 0)
 			}
 		} else {
-			if (touchDeltaY > 0) {
+			if (touchDeltaY > 10) {
 				move("moveUp", 0, -1)
-			} else {
+			} else if (touchDeltaY < -10) {
 				move("moveDown", 0, 1)
 			}
 		}
@@ -183,5 +184,3 @@ canvas.addEventListener("touchend", function (event) {
 if ("serviceWorker" in navigator) {
 	navigator.serviceWorker.register("sw.js")
 }
-
-document.getElementsByClassName("controls")[0].onclick = reload
