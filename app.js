@@ -183,3 +183,5 @@ canvas.addEventListener("touchend", function (event) {
 if ("serviceWorker" in navigator) {
 	navigator.serviceWorker.register("sw.js")
 }
+
+document.getElementsByClassName("controls")[0].onclick = reload
