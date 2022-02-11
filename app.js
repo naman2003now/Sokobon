@@ -153,14 +153,8 @@ var touchStartY = 0
 
 canvas.addEventListener("touchstart", function (event) {
 	event.preventDefault()
-	if (availableForMovement) {
-		if (event.targetTouches.length > 1) {
-			reload()
-		} else {
-			touchStartX = event.targetTouches[0].clientX
-			touchStartY = event.targetTouches[0].clientY
-		}
-	}
+	touchStartX = event.targetTouches[0].clientX
+	touchStartY = event.targetTouches[0].clientY
 })
 
 canvas.addEventListener("touchend", function (event) {
@@ -188,3 +182,7 @@ canvas.addEventListener("touchend", function (event) {
 		}
 	}
 })
+
+if ("serviceWorker" in navigator) {
+	navigator.serviceWorker.register("sw.js")
+}

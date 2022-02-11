@@ -1,0 +1,12 @@
+{
+    "name": "Sokoban",
+    "short_name": "Sokoban",
+    "start_url": ".",
+    "background_color": "#00509d",
+    "theme_color": "#00509d",
+    "display": "standalone",
+    "icons": [{
+        "src":"logo.png",
+        "sizes": "any"
+    }]
+}
