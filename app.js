@@ -152,32 +152,39 @@ var touchStartX = 0
 var touchStartY = 0
 
 canvas.addEventListener("touchstart", function (event) {
-	if (event.targetTouches.length > 1) {
-		reload()
-		return
+	event.preventDefault()
+	if (availableForMovement) {
+		if (event.targetTouches.length > 1) {
+			reload()
+		} else {
+			touchStartX = event.targetTouches[0].clientX
+			touchStartY = event.targetTouches[0].clientY
+		}
 	}
-	touchStartX = event.targetTouches[0].clientX
-	touchStartY = event.targetTouches[0].clientY
 })
 
 canvas.addEventListener("touchend", function (event) {
-	if (event.changedTouches.length > 1) {
-		reload()
-		return
-	}
-	let touchDeltaX = touchStartX - event.changedTouches[0].clientX
-	let touchDeltaY = touchStartY - event.changedTouches[0].clientY
-	if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
-		if (touchDeltaX > 0) {
-			move("moveLeft", -1, 0)
+	event.preventDefault()
+	if (availableForMovement) {
+		if (event.changedTouches.length > 1) {
+			reload()
+			return
 		} else {
-			move("moveRight", 1, 0)
-		}
-	} else {
-		if (touchDeltaY > 0) {
-			move("moveUp", 0, -1)
-		} else {
-			move("moveDown", 0, 1)
+			let touchDeltaX = touchStartX - event.changedTouches[0].clientX
+			let touchDeltaY = touchStartY - event.changedTouches[0].clientY
+			if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
+				if (touchDeltaX > 0) {
+					move("moveLeft", -1, 0)
+				} else {
+					move("moveRight", 1, 0)
+				}
+			} else {
+				if (touchDeltaY > 0) {
+					move("moveUp", 0, -1)
+				} else {
+					move("moveDown", 0, 1)
+				}
+			}
 		}
 	}
 })
