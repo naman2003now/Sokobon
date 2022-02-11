@@ -9,7 +9,7 @@ if (
 		navigator.userAgent
 	)
 ) {
-	controls = "Swipe to move and two finger tap to reload"
+	controls = "Swipe to move tap here to reload"
 }
 newLevel()
 
@@ -35,6 +35,7 @@ function newLevel() {
 		Levels.levels[currentLevel - 1].map,
 		controls
 	)
+	navigator.vibrate(200)
 }
 
 function reload() {
@@ -46,6 +47,7 @@ function reload() {
 		Levels.levels[currentLevel - 1].map,
 		controls
 	)
+	navigator.vibrate(200)
 }
 
 function move(animation, x, y) {
@@ -160,24 +162,19 @@ canvas.addEventListener("touchstart", function (event) {
 canvas.addEventListener("touchend", function (event) {
 	event.preventDefault()
 	if (availableForMovement) {
-		if (event.changedTouches.length > 1) {
-			reload()
-			return
-		} else {
-			let touchDeltaX = touchStartX - event.changedTouches[0].clientX
-			let touchDeltaY = touchStartY - event.changedTouches[0].clientY
-			if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
-				if (touchDeltaX > 0) {
-					move("moveLeft", -1, 0)
-				} else {
-					move("moveRight", 1, 0)
-				}
+		let touchDeltaX = touchStartX - event.changedTouches[0].clientX
+		let touchDeltaY = touchStartY - event.changedTouches[0].clientY
+		if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
+			if (touchDeltaX > 0) {
+				move("moveLeft", -1, 0)
 			} else {
-				if (touchDeltaY > 0) {
-					move("moveUp", 0, -1)
-				} else {
-					move("moveDown", 0, 1)
-				}
+				move("moveRight", 1, 0)
+			}
+		} else {
+			if (touchDeltaY > 0) {
+				move("moveUp", 0, -1)
+			} else {
+				move("moveDown", 0, 1)
 			}
 		}
 	}

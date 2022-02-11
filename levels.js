@@ -199,7 +199,8 @@ export const Levels = {
 	],
 
 	map_to_html: (level, controls) => {
-		let output = '<div class="controls">' + controls + "</div>"
+		let output =
+			'<div class="controls" onclick="reload">' + controls + "</div>"
 		let lineNumber = 0
 		level.forEach((line) => {
 			output += '<div class="row">'
